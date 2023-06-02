@@ -62,7 +62,7 @@ async def give_filter(client, message):
 async def next_page(bot, query):
     ident, req, key, offset = query.data.split("_")
     if int(req) not in [query.from_user.id, 0]:
-        return await query.answer("oKda", show_alert=True)
+        return await query.answer("ᴛʜɪs ɪs ɴᴏᴛ ғᴏʀ ʏᴏᴜ!!", show_alert=True)
     try:
         offset = int(offset)
     except:
@@ -86,7 +86,7 @@ async def next_page(bot, query):
             [
                 InlineKeyboardButton(
                     text=f"[{get_size(file.file_size)}] {file.file_name}", 
-                    url=await get_shortlink(f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")
+                    callback_data=f'files_#{file.file_id}',
                 ),     
             ]
             for file in files
@@ -99,22 +99,17 @@ async def next_page(bot, query):
                 ),
                 InlineKeyboardButton(
                     text=f"{get_size(file.file_size)}",
-                    url=await get_shortlink(f"https://telegram.me/{temp.U_NAME}?start=files_{file.file_id}")
+                    callback_data=f'files_#{file.file_id}',
                 ),
             ]
             for file in files
         ]
     btn.insert(0, 
         [
-            InlineKeyboardButton('📥 How To Download 📥', url='https://t.me/How_To_Open_and_Download/24')
+            InlineKeyboardButton('❤️ Share and Support Us❤️', url='https://t.me/Get_Update_Official')
         ]
     )
-    btn.insert(1, 
-        [
-            InlineKeyboardButton('Channel', url='https://t.me/Get_Update_Official'),
-            InlineKeyboardButton('Contact', url='https://t.me/Harsh_Kumar0001')
-        ]
-    )
+   
    
     if 0 < offset <= 6:
         off_set = 0
@@ -689,7 +684,7 @@ async def auto_filter(client, msg, spoll=False):
             [
                 InlineKeyboardButton(
                     text=f"[{get_size(file.file_size)}] {file.file_name}", 
-                    url=await get_shortlink(f"https://telegram.me/{temp.U_NAME}?start=pre_{file.file_id}")
+                    callback_data=f'files_#{file.file_id}',
                 ),
             ]
             for file in files
@@ -699,18 +694,18 @@ async def auto_filter(client, msg, spoll=False):
             [
                 InlineKeyboardButton(
                     text=f"{file.file_name}",
-                    url=await get_shortlink(f"https://telegram.me/{temp.U_NAME}?start=pre_{file.file_id}")
+                    callback_data=f'files_#{file.file_id}',
                 ),
                 InlineKeyboardButton(
                     text=f"{get_size(file.file_size)}",
-                    url=await get_shortlink(f"https://telegram.me/{temp.U_NAME}?start=pre_{file.file_id}")
+                    callback_data=f'files_#{file.file_id}',
                 ),
             ]
             for file in files
         ]
     btn.insert(0, 
         [
-            InlineKeyboardButton('📥 How To Download 📥', url='https://t.me/How_To_Open_and_Download/24')
+            InlineKeyboardButton('❤️ Share and Support Us ❤️', url='https://t.me/Get_Update_Official')
         ]
     )
     if offset != "":
